@@ -102,6 +102,11 @@ public class Controlador {
     @RequestMapping(value="/eliminaMarcador", method = RequestMethod.GET)
     public String eliminaMarcador(HttpServletRequest request){
         //Aqui va tu codigo
+        Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        Marcador m = marcador_db.getMarcador(latitud, longitud);
+        marcador_db.eliminar(m);
+        return "redirect:/";
     }
     
     /**
@@ -111,6 +116,13 @@ public class Controlador {
      */
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
-        //Aqui va tu codigo   
+        //Aqui va tu codigo
+        Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        String nombre = request.getParameter("nombre");
+        String descripcion = request.getParameter("descripcion");
+        Marcador ma = marcador_db.getMarcador(latitud, longitud);
+        //Debemos verificar cuales son los campos que el ususario necesita actualizar
+        return "redirect:/";
     }
 }
