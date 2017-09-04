@@ -21,7 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
  *
  * @author jonathan
  */
-@Controller 
+@Controller //Notación para spring
 public class Controlador {
     /*Injectamos el modelo del marcador */
     @Autowired
@@ -32,11 +32,11 @@ public class Controlador {
      * @param model 
      * @return regresa el modelo 
      */
-    @RequestMapping(value="/", method = RequestMethod.GET)
+    @RequestMapping(value="/", method = RequestMethod.GET) //Notción para una petición, method es el tipo de petición y value es la petición
     public ModelAndView marcadores(ModelMap model){
         List<Marcador> mar = marcador_db.getMarcadores();
           
-        model.addAttribute("marcadores", mar);
+        model.addAttribute("marcadores", mar); //"marcadores" es el que voy a ver en JSP
         
         return new ModelAndView("inicio",model);
     
@@ -70,16 +70,16 @@ public class Controlador {
             m.setLongitud(longitud);
             m.setNombre(nombre);
             m.setDescripcion(descripcion);
-            marcador_db.guardar(m);
-        
+            marcador_db.guardar(m);    
         }
         return "redirect:/";
     }
     
-    
-    
     /**
      * Actualiza el marcador
+     * Redirige al marcador que queremos actualizar
+     * usamos la longitud y latitud para buscar el marcador
+     * En el modelo enviarselo a la página que si lo va a actualizar
      * @param model
      * @param request
      * @return 
@@ -87,15 +87,28 @@ public class Controlador {
     @RequestMapping(value="/actualizaM", method = RequestMethod.GET)
     public ModelAndView actualizaM(ModelMap model,HttpServletRequest request){
         //Aqui va tu codigo
-    
+        Double latitud = Double.parseDouble(request.getParameter("latitud"));
+        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        Marcador m = marcador_db.getMarcador(latitud, longitud);
+        model.addAttribute("marcador", m);
+        return new ModelAndView("actualizaM", model);
     }
     
-    
+    /**
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value="/eliminaMarcador", method = RequestMethod.GET)
     public String eliminaMarcador(HttpServletRequest request){
         //Aqui va tu codigo
     }
     
+    /**
+     * 
+     * @param request
+     * @return 
+     */
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
         //Aqui va tu codigo   
