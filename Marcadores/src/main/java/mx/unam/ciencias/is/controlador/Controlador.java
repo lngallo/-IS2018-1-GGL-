@@ -95,9 +95,9 @@ public class Controlador {
     }
     
     /**
-     * 
-     * @param request
-     * @return 
+     * Este método maneja la petición eliminar marcador
+     * @param request recibimos los datos de la petición eliminar
+     * @return nos regresa a la página principal donde se refleja la acción
      */
     @RequestMapping(value="/eliminaMarcador", method = RequestMethod.GET)
     public String eliminaMarcador(HttpServletRequest request){
@@ -121,8 +121,16 @@ public class Controlador {
         Double longitud = Double.parseDouble(request.getParameter("longitud"));
         String nombre = request.getParameter("nombre");
         String descripcion = request.getParameter("descripcion");
-        Marcador ma = marcador_db.getMarcador(latitud, longitud);
+        Marcador m = marcador_db.getMarcador(latitud, longitud);
         //Debemos verificar cuales son los campos que el ususario necesita actualizar
+        if (!nombre.isEmpty())
+            m.setNombre(nombre);
+        if (latitud != null)
+            m.setLatitud(latitud);
+        if (longitud != null)
+            m.setLongitud(longitud);
+        if (!descripcion.isEmpty())
+            m.setDescripcion(descripcion);
         return "redirect:/";
     }
 }

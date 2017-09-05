@@ -26,7 +26,7 @@ public class Marcador {
     
     //Aqui va tu codigo
     @Column(name = "nombreM")
-    private String nombre_marcador;
+    private String nombre;
     
     @Column(name = "latitud")
     private double latitud;
@@ -57,16 +57,16 @@ public class Marcador {
      * Nos da el nombre del marcador
      * @return el nombre del marcador
      */
-    public String getNombre_marcador() {
-        return nombre_marcador;
+    public String getNombre() {
+        return nombre;
     }
     
     /**
      * Le da nombre al marcador
-     * @param nombre_marcador 
+     * @param nombre
      */
-    public void setNombre_marcador(String nombre_marcador) {
-        this.nombre_marcador = nombre_marcador;
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
     
     /**
