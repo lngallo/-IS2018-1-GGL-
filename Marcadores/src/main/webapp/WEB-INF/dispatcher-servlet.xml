@@ -1,5 +1,5 @@
-//TODAS LAS PETICIONES AL SERVIDOR
 <?xml version='1.0' encoding='UTF-8' ?>
+<!-- TODAS LAS PETICIONES AL SERVIDOR -->
 <!-- was: <?xml version="1.0" encoding="UTF-8"?> -->
 <beans xmlns="http://www.springframework.org/schema/beans"
        xmlns:mvc="http://www.springframework.org/schema/mvc"

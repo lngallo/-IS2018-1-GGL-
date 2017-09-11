@@ -32,7 +32,8 @@ public class Controlador {
      * @param model 
      * @return regresa el modelo 
      */
-    @RequestMapping(value="/", method = RequestMethod.GET) //Notción para una petición, method es el tipo de petición y value es la petición
+    //Notación para una petición, value es la petición y method es el tipo de petición
+    @RequestMapping(value="/", method = RequestMethod.GET) 
     public ModelAndView marcadores(ModelMap model){
         List<Marcador> mar = marcador_db.getMarcadores();
           
@@ -82,7 +83,7 @@ public class Controlador {
      * En el modelo enviarselo a la página que si lo va a actualizar
      * @param model
      * @param request
-     * @return 
+     * @return un objeto ModelAndView
      */ 
     @RequestMapping(value="/actualizaM", method = RequestMethod.GET)
     public ModelAndView actualizaM(ModelMap model,HttpServletRequest request){
@@ -91,6 +92,7 @@ public class Controlador {
         Double longitud = Double.parseDouble(request.getParameter("longitud"));
         Marcador m = marcador_db.getMarcador(latitud, longitud);
         model.addAttribute("marcador", m);
+        //"actualiza"jsp al que le vas a inyenctar el modelo
         return new ModelAndView("actualizaM", model);
     }
     
@@ -110,27 +112,33 @@ public class Controlador {
     }
     
     /**
-     * 
+     * Permite modificar los datos de un marcador, primero 
+     * se hace la petición y se especifica el tipo, luego
+     * leemos los campos.
      * @param request
-     * @return 
+     * @return nos regresa a la página principal
      */
     @RequestMapping(value= "/actualizar", method = RequestMethod.POST)
     public String actualizar(HttpServletRequest request){
         //Aqui va tu codigo
-        Double latitud = Double.parseDouble(request.getParameter("latitud"));
-        Double longitud = Double.parseDouble(request.getParameter("longitud"));
+        String latitud = request.getParameter("latitud");
+        String longitud = request.getParameter("longitud");
         String nombre = request.getParameter("nombre");
-        String descripcion = request.getParameter("descripcion");
-        Marcador m = marcador_db.getMarcador(latitud, longitud);
+        String descripcion = request.getParameter("desc");
+        Integer id = Integer.parseInt(request.getParameter("id"));
+        Marcador m = marcador_db.getMarcadorId(id);
         //Debemos verificar cuales son los campos que el ususario necesita actualizar
         if (!nombre.isEmpty())
             m.setNombre(nombre);
-        if (latitud != null)
-            m.setLatitud(latitud);
-        if (longitud != null)
-            m.setLongitud(longitud);
+        if (!latitud.isEmpty() && !longitud.isEmpty()) {
+            m.setLatitud(Double.parseDouble(latitud));
+            m.setLongitud(Double.parseDouble(longitud));
+        }
         if (!descripcion.isEmpty())
             m.setDescripcion(descripcion);
+        //persistencia en la base de datos
+        //se actualiza directo en la base de datos
+        marcador_db.actualizar(m);
         return "redirect:/";
     }
 }
