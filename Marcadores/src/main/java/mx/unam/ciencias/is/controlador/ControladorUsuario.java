@@ -11,4 +11,17 @@ package mx.unam.ciencias.is.controlador;
  */
 public class ControladorUsuario {
     
+    public String guardarUsuario( request) {
+        //DECLARAMOS ATRIBUTOS DE LA TABLA
+          
+        Usuario u usuario_bd.getUsuario(correo);
+        if (u==nell){
+            u = new Usuario();
+            u.setNickname(nickname);
+            u.setCorreo(correo);
+            u.setContraseña(contrasena);
+            usuario_bd.guardaUsuario(u);
+        }
+        return "redirect:/"
+    }
 }
