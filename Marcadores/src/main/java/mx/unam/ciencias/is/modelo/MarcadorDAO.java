@@ -13,7 +13,7 @@ import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 
 /**
- *
+ * Nos permite modificar datos en la tabla marcador
  * @author jonathan
  */
 public class MarcadorDAO {
@@ -43,9 +43,9 @@ public class MarcadorDAO {
         try {
             tx = session.beginTransaction();
             //guardamos el marcador
-            session.persist(marcador);
+            session.persist(marcador); //para guardar persist
 
-            tx.commit();
+            tx.commit(); //para realizar la transaccion
         } catch (Exception e) {
             //Se regresa a un estado consistente 
             if (tx != null) {

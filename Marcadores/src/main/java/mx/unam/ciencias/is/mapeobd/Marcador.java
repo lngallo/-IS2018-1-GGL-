@@ -20,7 +20,7 @@ import javax.persistence.Id;
 @Entity
 @Table(name="marcador")
 public class Marcador {
-    @Id@GeneratedValue(strategy =GenerationType.IDENTITY )
+    @Id@GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "idmarcador")
     private int marcador_id;
     
@@ -36,6 +36,11 @@ public class Marcador {
     
     @Column(name = "descripcion")
     private String descripcion;
+    
+    /* Mapea la llave foranea de la base, muchos marcadores asociados con un usuario */
+    @ManyToOne
+    @JoinColumn(name = "idusuario") //solo del lado que se esta referenciando la llave hace join
+    private Usuario usuario; //objeto a referenciar en la clase Usuario
     
     /**Nos da el id del marcador
      * @return el id del marcador 
