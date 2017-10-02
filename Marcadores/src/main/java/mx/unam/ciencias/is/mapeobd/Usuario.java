@@ -13,6 +13,7 @@ import javax.persistence.Column;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -39,7 +40,7 @@ public class Usuario {
 
     /**
      * 
-     * @return 
+     * @return  idusuario
      */
     public int getIdusuario() {
         return idusuario;
@@ -47,7 +48,7 @@ public class Usuario {
 
     /**
      * 
-     * @param idusuario 
+     * @param   idusuario
      */
     public void setIdusuario(int idusuario) {
         this.idusuario = idusuario;
@@ -55,7 +56,7 @@ public class Usuario {
 
     /**
      * 
-     * @return 
+     * @return  nickname
      */
     public String getNickname() {
         return nickname;
@@ -71,7 +72,7 @@ public class Usuario {
 
     /**
      * 
-     * @return 
+     * @return correo
      */
     public String getCorreo() {
         return correo;
@@ -87,7 +88,7 @@ public class Usuario {
 
     /**
      * 
-     * @return 
+     * @return contrasena
      */
     public String getContrasena() {
         return contrasena;
@@ -103,7 +104,7 @@ public class Usuario {
     
     /**
      * 
-     * @return 
+     * @return marcadores
      */
     public Set getMarcadores() {
         return marcadores;
