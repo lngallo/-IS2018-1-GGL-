@@ -33,7 +33,7 @@ public class Controlador {
      * @return regresa el modelo 
      */
     //Notación para una petición, value es la petición y method es el tipo de petición
-    @RequestMapping(value="/", method = RequestMethod.GET) 
+    @RequestMapping(value="/inicio", method = RequestMethod.GET) 
     public ModelAndView marcadores(ModelMap model){
         List<Marcador> mar = marcador_db.getMarcadores();
           

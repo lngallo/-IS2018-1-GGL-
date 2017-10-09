@@ -25,7 +25,7 @@ import org.springframework.web.servlet.ModelAndView;
 public class ControladorUsuario {
     /*Injectamos el modelo del marcador */
     @Autowired
-    UsuarioDAO usuario_db;
+    private UsuarioDAO usuario_db;
     
     /**
      * 
@@ -37,7 +37,7 @@ public class ControladorUsuario {
         //DECLARAMOS ATRIBUTOS DE LA TABLA
         String nickname = request.getParameter("nickname");//*
         String correo = request.getParameter("correo");//*
-        String contrasena = request.getParameter("contrsena");
+        String contrasena = request.getParameter("contrasena");
         Usuario usuario = usuario_db.getUsuario(correo);
         Usuario nuevo_usuario;
         //Si no esta en la base creamos un usuario nuevo
